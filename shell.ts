@@ -1,7 +1,10 @@
+// $ npx ts-node shell.ts
 import repl from 'node:repl';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const context = {
-  message: 'message',
+  port: process.env.PORT ?? 8080,
 };
 
 const r = repl.start('> ');
