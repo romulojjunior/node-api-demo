@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "npx tsc",
-    "start": "node build/index.js",
+    "start": "node build/src/index.js",
     "dev": "npx tsc --watch",
     "lint": "yarn eslint src/",
     "console": "ts-node shell.ts",
