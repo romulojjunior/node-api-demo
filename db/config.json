@@ -3,25 +3,8 @@
     "dialect": "sqlite",
     "storage": "db/database.sqlite"
   },
-  "developmentx": {
-    "username": "mysql",
-    "password": "1234",
-    "database": "nodeapp_dev",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "nodeapp_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "nodeapp_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sqlite",
+    "storage": "db/database-test.sqlite"
   }
 }
