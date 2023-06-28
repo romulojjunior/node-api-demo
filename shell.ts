@@ -1,7 +1,7 @@
 // $ npx ts-node shell.ts
 import repl from 'node:repl';
 import dotenv from 'dotenv';
-import db from './src/models';
+import db from './src/domain/models';
 dotenv.config();
 
 const r = repl.start('> ');
