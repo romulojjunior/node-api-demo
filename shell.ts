@@ -2,6 +2,7 @@
 import repl from 'node:repl';
 import dotenv from 'dotenv';
 import db from './src/data/models';
+import CreateUserUC from './src/domain/usecases/user/create-user-uc';
 dotenv.config();
 
 const r = repl.start('> ');
@@ -17,4 +18,12 @@ Object.defineProperty(r.context, 'db', {
   configurable: false,
   enumerable: true,
   value: db
+});
+
+Object.defineProperty(r.context, 'uc', {
+  configurable: false,
+  enumerable: true,
+  value: {
+    user: { CreateUserUC }
+  }
 });
