@@ -11,7 +11,6 @@ describe('CreateUserUC test.', () => {
 
   test('Success case.', async () => {
     const userData = userFactory({});
-
     const user = await usecase.execute(userData);
     const userJSON = user.toJSON();
 
