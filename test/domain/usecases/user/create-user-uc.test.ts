@@ -1,5 +1,6 @@
 import CreateUserUC from "../../../../src/domain/usecases/user/create-user-uc";
 import db from "../../../../src/domain/models";
+import userFactory from "../../../factory/user-factory";
 
 describe('CreateUserUC test.', () => {
   let usecase: CreateUserUC;
@@ -9,12 +10,7 @@ describe('CreateUserUC test.', () => {
   });
 
   test('Success case.', async () => {
-    const userData = {
-      name: 'nick',
-      email: 'nick@test.com',
-      password: '1234',
-      password_conf: '1234'
-    };
+    const userData = userFactory({});
 
     const user = await usecase.execute(userData);
     const userJSON = user.toJSON();
