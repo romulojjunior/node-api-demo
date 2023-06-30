@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import db, { User } from "../../models";
+import db, { User } from "../../../data/models";
 
 interface Params {
   name: string, 

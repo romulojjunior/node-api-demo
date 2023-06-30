@@ -1,5 +1,5 @@
 import CreateUserUC from "../../../../src/domain/usecases/user/create-user-uc";
-import db from "../../../../src/domain/models";
+import db from "../../../../src/data/models";
 import userFactory from "../../../factory/user-factory";
 
 describe('CreateUserUC test.', () => {
