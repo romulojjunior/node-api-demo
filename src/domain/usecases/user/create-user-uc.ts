@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db, { User } from "../../../data/models";
+import PasswordUtils from "../../utils/password-utils";
 
 interface Params {
   name: string, 
@@ -28,9 +29,9 @@ class CreateUserUC {
       throw new InvalidEmailFormatError();
     }
 
-    // TODO: create password hash
+    const passwordHash = PasswordUtils.createHash(password);
     return await db.models.User.create({
-      name, email, password
+      name, email, password: passwordHash
     });
   }
 }
