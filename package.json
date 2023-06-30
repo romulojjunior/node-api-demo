@@ -22,7 +22,9 @@
     "test:db:drop": "export NODE_ENV=test; sequelize-cli db:drop"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/sequelize": "^4.28.15",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "reflect-metadata": "^0.1.13",
