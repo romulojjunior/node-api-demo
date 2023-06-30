@@ -1,0 +1,15 @@
+name: CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Database migrations
+      run: npm run test:db:migrate
+    - name: Run tests
+      run: npm run test
