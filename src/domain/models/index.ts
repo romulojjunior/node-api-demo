@@ -3,16 +3,21 @@
 import { Sequelize } from 'sequelize';
 import ApiKey from './apikey';
 import User from './user';
-// import config from '../../db/config.json';
-// const env: string = process.env.NODE_ENV || 'development';
+import dbConfig from '../../../db/config.json';
 
-const sequelize = new Sequelize({
+const isTest = process.env.NODE_ENV === 'test';
+const databaseName  =  isTest ? 'test' : 'development';
+
+const currentConfig = dbConfig[databaseName];
+const db = new Sequelize({
   "dialect": "sqlite",
-  "storage": "db/database.sqlite"
+  "storage": currentConfig.storage
 });
 
 // Load all models
-User.load(sequelize);
-ApiKey.load(sequelize);
+User.load(db);
+ApiKey.load(db);
 
-export default sequelize;
+export { User, ApiKey };
+
+export default db;
