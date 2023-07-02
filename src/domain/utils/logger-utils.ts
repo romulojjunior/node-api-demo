@@ -15,7 +15,8 @@ export default class LoggerUtils {
     console.info(message);
   }
 
-  static e(message: string, params?: Map<string, unknown>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static e(message: string, params?: any) {
     if (params) {
       console.error(message, params);
       return;
