@@ -15,8 +15,13 @@ const db = new Sequelize({
 });
 
 // Load all models
+
 User.load(db);
 ApiKey.load(db);
+
+// Associate All Models
+User.associate(db);
+ApiKey.associate(db);
 
 export { User, ApiKey };
 

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import db, { User } from "../../../data/models";
+import { User } from "../../../data/models";
 import PasswordUtils from "../../utils/password-utils";
 
 class CreateUserUC {
@@ -29,7 +29,8 @@ class CreateUserUC {
     }
 
     const passwordHash = PasswordUtils.createHash(params.password);
-    return await db.models.User.create({
+    const { User } = this.db.models;
+    return await User.create({
       name: params.name, 
       email: params.email, 
       password: passwordHash
