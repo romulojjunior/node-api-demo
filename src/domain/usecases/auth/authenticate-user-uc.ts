@@ -34,6 +34,6 @@ class AuthenticateUserUC {
   }
 }
 
-class InvalidCredentialsError extends Error {}
+export class InvalidCredentialsError extends Error {}
 
 export default AuthenticateUserUC;

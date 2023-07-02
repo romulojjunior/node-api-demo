@@ -1,5 +1,5 @@
 import express from 'express';
-import AuthenticateUserUC from '../../domain/usecases/auth/authenticate-user-uc';
+import AuthenticateUserUC, { InvalidCredentialsError } from '../../domain/usecases/auth/authenticate-user-uc';
 import db from '../../data/models';
 import CreateApikeyUC from '../../domain/usecases/auth/create-apikey-uc';
 import LoggerUtils from '../../domain/utils/logger-utils';
@@ -27,8 +27,12 @@ class AuthRouter {
           apikey: apikeyJSON.value
         });
       } catch (e) {
-        LoggerUtils.e('AuthRouter: POST user/', { e });
-        res.sendStatus(401);
+        if (e instanceof InvalidCredentialsError) {
+          res.sendStatus(401);
+        } else {
+          LoggerUtils.e('AuthRouter: POST user/', { e });
+          res.sendStatus(500);
+        }
       }
     });
 
