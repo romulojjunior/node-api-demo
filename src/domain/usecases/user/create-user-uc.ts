@@ -13,10 +13,10 @@ class CreateUserUC {
     name: string, 
     email: string, 
     password: string, 
-    password_conf: string
+    passwordConf: string
   }) : Promise<User> {
 
-    if (params.password !== params.password_conf) {
+    if (params.password !== params.passwordConf) {
       throw new InvalidPasswordError();
     }
 
@@ -30,6 +30,15 @@ class CreateUserUC {
 
     const passwordHash = PasswordUtils.createHash(params.password);
     const { User } = this.db.models;
+
+    const hasUser = await User.findOne({
+      where: { email: params.email }
+    });
+
+    if (hasUser) {
+      throw new EmailUnavailableError();
+    }
+
     return await User.create({
       name: params.name, 
       email: params.email, 
@@ -38,8 +47,9 @@ class CreateUserUC {
   }
 }
 
-class InvalidPasswordError extends Error {}
-class InvalidNameLengthError extends Error {}
-class InvalidEmailFormatError extends Error {}
+export class InvalidPasswordError extends Error {}
+export class InvalidNameLengthError extends Error {}
+export class InvalidEmailFormatError extends Error {}
+export class EmailUnavailableError extends Error {}
 
 export default CreateUserUC;

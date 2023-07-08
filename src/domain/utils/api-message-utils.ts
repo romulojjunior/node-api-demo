@@ -6,6 +6,10 @@ class ApiMessageUtils {
   static unauthorized() {
     return {'message': `Invalid credentials.`};
   }
+
+  static emailUnAvailable() {
+    return {'message': `Email unavailable.`};
+  }
 }
 
 export default ApiMessageUtils;

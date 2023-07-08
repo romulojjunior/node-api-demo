@@ -12,4 +12,10 @@ describe('ApiMessageUtils test.', () => {
     const response = ApiMessageUtils.unauthorized();
     expect(response.message).toBe('Invalid credentials.');
   });
+
+
+  test('Email unavailable message.', async () => {
+    const response = ApiMessageUtils.emailUnAvailable();
+    expect(response.message).toBe('Email unavailable.');
+  });
 });

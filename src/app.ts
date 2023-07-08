@@ -10,6 +10,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-app.use('/api/v1/account', new UserAccountRouter().create());
+app.use('/api/v1/account', UserAccountRouter);
 
 export default app;
