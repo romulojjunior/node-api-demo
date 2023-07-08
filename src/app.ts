@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import AuthRouter from './api/auth/user-router';
+import UserAccountRouter from './api/v1/account/user-account-router';
 
 
 const app: Express = express();
@@ -10,6 +10,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-app.use('/auth', new AuthRouter().create());
+app.use('/api/v1/account', new UserAccountRouter().create());
 
 export default app;
