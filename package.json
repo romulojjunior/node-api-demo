@@ -10,7 +10,7 @@
     "dev": "npx tsc --watch",
     "lint": "yarn eslint src/",
     "test": "jest ./test/",
-    "console": "ts-node shell.ts",
+    "console": "ts-node ./tools/shell.ts",
     "db:migrate:undo": "sequelize-cli db:migrate:undo",
     "db:migrate": "sequelize-cli db:migrate",
     "db:create": "sequelize-cli db:create",
