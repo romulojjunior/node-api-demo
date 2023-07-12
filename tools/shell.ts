@@ -5,6 +5,7 @@ import db from '../src/data/models';
 import AuthenticateUserUC from '../src/domain/usecases/auth/authenticate-user-uc';
 import CreateApikeyUC from '../src/domain/usecases/auth/create-apikey-uc';
 import CreateUserUC from '../src/domain/usecases/user/create-user-uc';
+import DestroyUserUC from '../src/domain/usecases/user/destroy-user-uc';
 dotenv.config();
 
 const r = repl.start('> ');
@@ -26,7 +27,8 @@ Object.defineProperty(r.context, 'uc', {
   configurable: false,
   enumerable: true,
   value: {
-    CreateUserUC, 
+    CreateUserUC,
+    DestroyUserUC,
     AuthenticateUserUC, 
     CreateApikeyUC 
   }
