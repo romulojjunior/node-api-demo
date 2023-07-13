@@ -30,6 +30,9 @@ class User extends Model {
     User.hasMany(models.ApiKey, {
       onDelete: 'CASCADE'
     });
+    User.hasMany(models.Story, {
+      onDelete: 'CASCADE'
+    });
   }
 }
 
