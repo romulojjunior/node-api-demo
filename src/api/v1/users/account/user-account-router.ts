@@ -1,10 +1,10 @@
 import express from 'express';
-import AuthenticateUserUC, { InvalidCredentialsError } from '../../../domain/usecases/auth/authenticate-user-uc';
-import db from '../../../data/models';
-import CreateApikeyUC from '../../../domain/usecases/auth/create-apikey-uc';
-import LoggerUtils from '../../../domain/utils/logger-utils';
-import ApiMessageUtils from '../../../domain/utils/api-message-utils';
-import CreateUserUC, { EmailUnavailableError } from '../../../domain/usecases/user/create-user-uc';
+import AuthenticateUserUC, { InvalidCredentialsError } from '../../../../domain/usecases/auth/authenticate-user-uc';
+import db from '../../../../data/models';
+import CreateApikeyUC from '../../../../domain/usecases/auth/create-apikey-uc';
+import LoggerUtils from '../../../../domain/utils/logger-utils';
+import ApiMessageUtils from '../../../../domain/utils/api-message-utils';
+import CreateUserUC, { EmailUnavailableError } from '../../../../domain/usecases/user/create-user-uc';
 
 const UserAccountRouter = express.Router();
 
