@@ -1,4 +1,4 @@
-import CreateStoryUC from "../../../../src/domain/usecases/stories/create-story";
+import CreateStoryUC from "../../../../src/domain/usecases/stories/create-story-uc";
 import db from "../../../../src/data/models";
 import userFactory from "../../../factory/user-factory";
 import PasswordUtils from "../../../../src/domain/utils/password-utils";
