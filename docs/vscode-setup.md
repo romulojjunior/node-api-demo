@@ -30,6 +30,9 @@
                 "--coverage",
                 "false"
             ],
+            "args": [
+                "${relativeFile}"
+            ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"
         }

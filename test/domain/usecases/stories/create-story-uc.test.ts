@@ -32,8 +32,8 @@ describe('CreateStoryUC test.', () => {
 
     expect(story).not.toBeUndefined();
 
-    story.destroy();
+    await story.destroy();
 
-    user.destroy();
+    await user.destroy();
   });
 });

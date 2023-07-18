@@ -19,7 +19,7 @@ describe('CreateApiKeyUC test.', () => {
   
     expect(apiKeyJSON.userId).toEqual(userId);
     
-    apikey.destroy();
-    user.destroy();
+    await apikey.destroy();
+    await user.destroy();
   });
 });
