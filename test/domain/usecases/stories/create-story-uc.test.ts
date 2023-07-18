@@ -21,7 +21,6 @@ describe('CreateStoryUC test.', () => {
 
     const userId: number = user.toJSON().id;
 
-
     const story = await usecase.execute({
       userId: userId,
       title: 'Mocked Title',
