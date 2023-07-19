@@ -29,7 +29,7 @@ UserAccountRouter.post('/signin', async (req, res) => {
       password
     });
 
-    const userId = await user.toJSON();
+    const userId = await user.toJSON().id;
     const createApiKeyUC = new CreateApikeyUC(db);
     const apikey = await createApiKeyUC.execute({ userId });
     const apikeyJSON = await apikey.toJSON();
