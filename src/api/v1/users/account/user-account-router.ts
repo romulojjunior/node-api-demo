@@ -8,7 +8,6 @@ import CreateUserUC, { EmailUnavailableError } from '../../../../domain/usecases
 
 const UserAccountRouter = express.Router();
 
-
 UserAccountRouter.post('/signin', async (req, res) => {
   const { email, password } = req.body;
 
