@@ -31,4 +31,19 @@ describe('UserAccountRouter', () => {
     await ApiKey.destroy({ where: { userId: userJSON.id }});
     await user.destroy();
   });
+
+  test('Success POST /api/v1/users/account/signup', async() => {
+    const { User } = db.models;
+
+    const payload = userFactory({});
+
+    const response = await request(app)
+      .post('/api/v1/users/account/signup')
+      .set('Accept', 'application/json')
+      .send(payload);
+
+    expect(response.status).toEqual(200);
+
+    await User.destroy({ where: { email: payload.email, name: payload.name }});
+  });
 });
