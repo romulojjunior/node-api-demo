@@ -1,5 +1,9 @@
-import db, { User } from '../src/data/models';
+import { randomUUID } from "crypto";
+
+import db, { User, Story } from '../src/data/models';
 import CreateUserUC from '../src/domain/usecases/user/create-user-uc';
+import CreateStoryUC from '../src/domain/usecases/stories/create-story-uc';
+import MediaType from "../src/data/models/media-type";
 
 const usersInfo = [
   {
@@ -24,7 +28,7 @@ const usersInfo = [
 
 async function createUser(): Promise<User[]> {
   const createUserUC = new CreateUserUC(db);
-  const users = usersInfo.map(async (user) => {
+  const usersPromise = usersInfo.map(async (user) => {
     return createUserUC.execute({
       name: user.name,
       email: user.email,
@@ -33,15 +37,35 @@ async function createUser(): Promise<User[]> {
     });
   });
 
-  return await Promise.all(users);
+  return await Promise.all(usersPromise);
+}
+
+
+async function createStories(user: User): Promise<Story[]> {
+  const createStoryUC = new CreateStoryUC(db);
+  const uuid = randomUUID();
+
+  const storiesPromises = [1, 2, 3, 4, 5].map((index: number) => {
+    const userJSON = user.toJSON();
+    return createStoryUC.execute({
+      userId:   userJSON.id,
+      title: `title-${index}-${uuid}`,
+      description: `description-${index}-${uuid}`,
+      mediaType: `${MediaType.image}`,
+      mediaId: `mediaId-${uuid}`,
+    });
+  });
+
+  return await Promise.all(storiesPromises);
 }
 
 
 async function main() {
   const users = await createUser();
-  for(const user in users) {
-    console.log(user);
-  }
+
+  users.forEach(async (user: User) => {
+    await createStories(user);
+  });
 }
 
 main();

@@ -3,6 +3,7 @@ import repl from 'node:repl';
 import dotenv from 'dotenv';
 import db from '../src/data/models';
 import AuthenticateUserUC from '../src/domain/usecases/auth/authenticate-user-uc';
+import AuthenticateApikeyUC from '../src/domain/usecases/auth/authenticate-apikey-uc';
 import CreateApikeyUC from '../src/domain/usecases/auth/create-apikey-uc';
 import CreateUserUC from '../src/domain/usecases/user/create-user-uc';
 import DestroyUserUC from '../src/domain/usecases/user/destroy-user-uc';
@@ -34,6 +35,7 @@ Object.defineProperty(r.context, 'uc', {
     CreateUserUC,
     DestroyUserUC,
     AuthenticateUserUC, 
+    AuthenticateApikeyUC,
     CreateApikeyUC,
     CreateStoryUC,
     DestroyStoryUC,
