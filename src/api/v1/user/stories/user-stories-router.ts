@@ -5,7 +5,7 @@ import GetStoriesFromUserUC from '../../../../domain/usecases/stories/get-storie
 import GetUserByApiKeyUC, { UserNotFoundError } from '../../../../domain/usecases/user/get-user-by-apikey';
 import ApiMessageUtils from '../../../../domain/utils/api-message-utils';
 import CreateStoryUC from '../../../../domain/usecases/stories/create-story-uc';
-import { title } from 'process';
+
 const UserStoriesRouter = express.Router();
 
 UserStoriesRouter.get('/', async (req, res) => {
