@@ -25,7 +25,7 @@ describe('CreateStoryUC test.', () => {
       userId: userId,
       title: 'Mocked Title',
       description: 'Mocked Content',
-      mediaType: MediaType.image.toString(),
+      mediaType: 'image',
       mediaId: 'ywdvubeinforgpbt234535etr'
     });
 
