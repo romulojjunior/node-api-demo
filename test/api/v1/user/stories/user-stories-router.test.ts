@@ -7,7 +7,7 @@ import PasswordUtils from "../../../../../src/domain/utils/password-utils";
 import { randomUUID } from "crypto";
 import MediaType from "../../../../../src/data/models/media-type";
 
-describe('UserAccountRouter', () => {
+describe('UserStoryRouter', () => {
   test('Success GET /api/v1/user/stories/', async() => {
     const { User, ApiKey, Story } = db.models;
     const apiKeyValue = randomUUID();
