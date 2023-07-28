@@ -5,8 +5,9 @@ import userFactory from "../../../../factory/user-factory";
 import storyFactory from "../../../../factory/story-factory";
 import PasswordUtils from "../../../../../src/domain/utils/password-utils";
 import { randomUUID } from "crypto";
+import MediaType from "../../../../../src/data/models/media-type";
 
-describe('UserAccountRouter', () => {
+describe('UserStoryRouter', () => {
   test('Success GET /api/v1/user/stories/', async() => {
     const { User, ApiKey, Story } = db.models;
     const apiKeyValue = randomUUID();
@@ -33,7 +34,7 @@ describe('UserAccountRouter', () => {
       .set('apikey', apiKeyValue)
       .send(payload);
 
-    expect(response.status).toEqual(200);
+    expect(response.status).toEqual(201);
     expect(response.body[0]).not.toBeNull();
     expect(response.body[0].userId).toBe(user.toJSON().id);
 
@@ -46,6 +47,104 @@ describe('UserAccountRouter', () => {
     const payload = {};
     const response = await request(app)
       .get('/api/v1/user/stories')
+      .set('Accept', 'application/json')
+      .set('apikey', 'INVALID_APIKEY')
+      .send(payload);
+
+    expect(response.status).toEqual(401);
+  });
+
+  test('Success POST /api/v1/user/stories/', async() => {
+    const { User, ApiKey, Story } = db.models;
+    const apiKeyValue = randomUUID();
+    const userPassword = '12341234';
+
+    const user: User = await User.create(userFactory({
+      password: PasswordUtils.createHash(userPassword)
+    }));  
+
+    const apikey = await ApiKey.create({
+      value: apiKeyValue,
+      userId: user.toJSON().id,
+      isEnabled: true
+    });
+
+
+    const payload = {
+      ...storyFactory({}),
+      mediaType: `${MediaType.image}`,
+    };
+
+    const response = await request(app)
+      .post('/api/v1/user/stories')
+      .set('Accept', 'application/json')
+      .set('apikey', apiKeyValue)
+      .send(payload);
+
+    const storyJSON = response.body;
+
+    expect(response.status).toEqual(201);
+    expect(storyJSON).not.toBeNull();
+    expect(storyJSON.userId).toBe(user.toJSON().id);
+    expect(storyJSON.title).toBe(payload.title);
+    expect(storyJSON.description).toBe(payload.description);
+
+
+    await Story.destroy({ where: {id: storyJSON.id }});
+    await apikey.destroy();
+    await user.destroy();
+  });
+
+  test('Invalid ApiKey POST /api/v1/user/stories/', async() => {
+    const payload = {};
+    const response = await request(app)
+      .post('/api/v1/user/stories')
+      .set('Accept', 'application/json')
+      .set('apikey', 'INVALID_APIKEY')
+      .send(payload);
+
+    expect(response.status).toEqual(401);
+  });
+
+
+  test('Success DELETE /api/v1/user/stories/:id/', async() => {
+    const { User, ApiKey, Story } = db.models;
+    const apiKeyValue = randomUUID();
+    const userPassword = '12341234';
+
+    const user: User = await User.create(userFactory({
+      password: PasswordUtils.createHash(userPassword)
+    }));  
+
+    const apikey = await ApiKey.create({
+      value: apiKeyValue,
+      userId: user.toJSON().id,
+      isEnabled: true
+    });
+
+    const story = await Story.create(storyFactory({
+      userId: user.toJSON().id,
+    }));
+
+    const storyId: number = story.toJSON().id;
+
+    const payload = {};
+    const response = await request(app)
+      .delete(`/api/v1/user/stories/${storyId}`)
+      .set('Accept', 'application/json')
+      .set('apikey', apiKeyValue)
+      .send(payload);
+
+    expect(response.status).toEqual(204);
+
+    await apikey.destroy();
+    await user.destroy();
+  });
+
+  test('Invalid ApiKey DELETE /api/v1/user/stories/:id', async() => {
+    const payload = {};
+    const response = await request(app)
+      .delete('/api/v1/user/stories/1234')
       .set('Accept', 'application/json')
       .set('apikey', 'INVALID_APIKEY')
       .send(payload);

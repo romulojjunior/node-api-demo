@@ -2,7 +2,6 @@ import CreateStoryUC from "../../../../src/domain/usecases/stories/create-story-
 import db from "../../../../src/data/models";
 import userFactory from "../../../factory/user-factory";
 import PasswordUtils from "../../../../src/domain/utils/password-utils";
-import MediaType from "../../../../src/data/models/media-type";
 
 describe('CreateStoryUC test.', () => {
   let usecase: CreateStoryUC;
@@ -25,7 +24,7 @@ describe('CreateStoryUC test.', () => {
       userId: userId,
       title: 'Mocked Title',
       description: 'Mocked Content',
-      mediaType: MediaType.image.toString(),
+      mediaType: 'image',
       mediaId: 'ywdvubeinforgpbt234535etr'
     });
 

@@ -38,6 +38,7 @@ UserAccountRouter.post('/signin', async (req, res) => {
   } catch (e) {
     if (e instanceof InvalidCredentialsError) {
       res.status(401).json(ApiMessageUtils.unauthorized());
+      return;
     } else {
       LoggerUtils.e('AuthRouter: POST singin/', { e });
       res.sendStatus(500);
@@ -81,9 +82,11 @@ UserAccountRouter.post('/signup', async (req, res) => {
   } catch (e) {
     if (e instanceof InvalidCredentialsError) {
       res.status(401).json(ApiMessageUtils.unauthorized());
+      return;
     }
     if (e instanceof EmailUnavailableError) {
       res.status(422).json(ApiMessageUtils.emailUnAvailable());
+      return;
     }
      else {
       LoggerUtils.e('AuthRouter: POST singin/', { e });
