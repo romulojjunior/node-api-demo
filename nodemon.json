@@ -1,7 +1,6 @@
 {
   "watch": [
     "src",
-    "db",
     "tools"
   ],
   "ext": "ts,json,pug",

@@ -4,7 +4,7 @@ import { Sequelize } from 'sequelize';
 import ApiKey from './apikey';
 import User from './user';
 import Story from './story';
-import dbConfig from '../../../db/config.json';
+import dbConfig from '../db/config.json';
 
 const isTest = process.env.NODE_ENV === 'test';
 const databaseName  =  isTest ? 'test' : 'development';
