@@ -1,4 +1,8 @@
+# Ignore
 node_modules/
 build/
 *.js
 *.sqlite
+
+# Accept
+!jest.config.js
